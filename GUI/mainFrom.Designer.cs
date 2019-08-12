@@ -89,7 +89,7 @@
             // 
             this.thôngTinToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.thôngTinToolStripMenuItem.Name = "thôngTinToolStripMenuItem";
-            this.thôngTinToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.thôngTinToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
             this.thôngTinToolStripMenuItem.Text = "Thông Tin";
             this.thôngTinToolStripMenuItem.Click += new System.EventHandler(this.thôngTinToolStripMenuItem_Click);
             // 
@@ -97,7 +97,7 @@
             // 
             this.đăngKýThuêToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.đăngKýThuêToolStripMenuItem.Name = "đăngKýThuêToolStripMenuItem";
-            this.đăngKýThuêToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.đăngKýThuêToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
             this.đăngKýThuêToolStripMenuItem.Text = "Đăng Ký Thuê";
             this.đăngKýThuêToolStripMenuItem.Click += new System.EventHandler(this.đăngKýThuêToolStripMenuItem_Click);
             // 
@@ -109,6 +109,7 @@
             this.hoadonToolStripMenuItem.Size = new System.Drawing.Size(96, 23);
             this.hoadonToolStripMenuItem.Text = "Hóa Đơn";
             this.hoadonToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.hoadonToolStripMenuItem.Click += new System.EventHandler(this.hoadonToolStripMenuItem_Click);
             // 
             // bangiaToolStripMenuItem
             // 

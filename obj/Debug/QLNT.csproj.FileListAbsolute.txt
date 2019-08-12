@@ -60,3 +60,4 @@ C:\Users\Admin\source\repos\QLNT\QLNT\obj\Debug\QLNT.GUI.DangNhap.resources
 C:\Users\Admin\source\repos\QLNT\QLNT\obj\Debug\QLNT.GUI.KhachThue.resources
 C:\Users\Admin\source\repos\QLNT\QLNT\obj\Debug\QLNT.GUI.ThongTin.resources
 C:\Users\Admin\source\repos\QLNT\QLNT\obj\Debug\QLNT.GUI.DangKyThue.resources
+C:\Users\Admin\source\repos\QLNT\QLNT\obj\Debug\QLNT.GUI.HoaDon.resources

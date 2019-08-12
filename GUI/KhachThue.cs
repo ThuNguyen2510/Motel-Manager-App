@@ -150,12 +150,27 @@ namespace QLNT.GUI
                     {
                         kt.Add(k);
                         dgvKH.DataSource = kt.show();
+                    Reset();
                     }
 
                
             }
 
         }
+
+        private void Reset()
+        {
+            txtMaKH.Text = "";
+            txtTenKhach.Text = "";
+            txtNghe.Text = "";
+            txtCMND.Text = "";
+            txtQue.Text = "";
+            txtSDT.Text = "";
+            radioButtonNam.Checked = false;
+            radioButtonNu.Checked = false;
+            pictureBox1.Image = null;
+        }
+
         public List<string> TimXoa()
         {
             List<string> msp = new List<string>();

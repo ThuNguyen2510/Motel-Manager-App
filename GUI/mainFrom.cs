@@ -86,5 +86,10 @@ namespace QLNT
             DangKyThue dangKyThue = new DangKyThue();
             dangKyThue.Show();
         }
+
+        private void hoadonToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

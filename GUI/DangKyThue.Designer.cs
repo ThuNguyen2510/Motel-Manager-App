@@ -40,8 +40,8 @@
             this.cbbPhongMoi = new System.Windows.Forms.ComboBox();
             this.cbbPhongGhep = new System.Windows.Forms.ComboBox();
             this.rbtGhep = new System.Windows.Forms.RadioButton();
-            this.rbtPhongMoi = new System.Windows.Forms.RadioButton();
             this.label10 = new System.Windows.Forms.Label();
+            this.rbtPhongMoi = new System.Windows.Forms.RadioButton();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.butThem = new System.Windows.Forms.Button();
@@ -74,6 +74,7 @@
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel1.Controls.Add(this.dgvKhachDangThue);
             this.panel1.Controls.Add(this.dgvPhongCoKhach);
             this.panel1.Controls.Add(this.label4);
@@ -126,6 +127,7 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel2.Controls.Add(this.dgvKhachChuaCoPhong);
             this.panel2.Location = new System.Drawing.Point(26, 352);
             this.panel2.Name = "panel2";
@@ -145,6 +147,7 @@
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel3.Controls.Add(this.cbbPhongMoi);
             this.panel3.Controls.Add(this.cbbPhongGhep);
             this.panel3.Controls.Add(this.rbtGhep);
@@ -185,6 +188,16 @@
             this.rbtGhep.UseVisualStyleBackColor = true;
             this.rbtGhep.CheckedChanged += new System.EventHandler(this.rbtGhep_CheckedChanged);
             // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(225, 16);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(66, 13);
+            this.label10.TabIndex = 0;
+            this.label10.Text = "Phòng mới";
+            // 
             // rbtPhongMoi
             // 
             this.rbtPhongMoi.AutoSize = true;
@@ -196,16 +209,6 @@
             this.rbtPhongMoi.Text = "Khách ở phòng mới";
             this.rbtPhongMoi.UseVisualStyleBackColor = true;
             this.rbtPhongMoi.CheckedChanged += new System.EventHandler(this.rbtPhongMoi_CheckedChanged);
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(225, 16);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(66, 13);
-            this.label10.TabIndex = 0;
-            this.label10.Text = "Phòng mới";
             // 
             // label8
             // 

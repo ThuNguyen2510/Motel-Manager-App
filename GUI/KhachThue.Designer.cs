@@ -481,6 +481,8 @@
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.panel1.BackgroundImage = global::QLNT.Properties.Resources.Main1;
+            this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel1.Controls.Add(this.dgvKH);
             this.panel1.Location = new System.Drawing.Point(176, 374);
             this.panel1.Name = "panel1";
