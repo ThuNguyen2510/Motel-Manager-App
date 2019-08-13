@@ -63,7 +63,6 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTenDV)).BeginInit();
@@ -145,7 +144,6 @@
             // 
             this.panel3.BackgroundImage = global::QLNT.Properties.Resources._50_Beautiful_and_Minimalist_Presentation_Backgrounds_03;
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel3.Controls.Add(this.button1);
             this.panel3.Controls.Add(this.lbDonVi);
             this.panel3.Controls.Add(this.butXoaDV);
             this.panel3.Controls.Add(this.butSua);
@@ -182,6 +180,7 @@
             this.butXoaDV.TabIndex = 7;
             this.butXoaDV.Text = "Xóa";
             this.butXoaDV.UseVisualStyleBackColor = true;
+            this.butXoaDV.Click += new System.EventHandler(this.butXoaDV_Click);
             // 
             // butSua
             // 
@@ -193,6 +192,7 @@
             this.butSua.TabIndex = 6;
             this.butSua.Text = "Sửa";
             this.butSua.UseVisualStyleBackColor = true;
+            this.butSua.Click += new System.EventHandler(this.butSua_Click);
             // 
             // butThem
             // 
@@ -331,6 +331,7 @@
             this.dgvPhongDaLapHD.Size = new System.Drawing.Size(122, 150);
             this.dgvPhongDaLapHD.TabIndex = 0;
             this.dgvPhongDaLapHD.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPhongDaLapHD_CellContentClick);
+            this.dgvPhongDaLapHD.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvPhongDaLapHD_RowHeaderMouseClick);
             // 
             // panel6
             // 
@@ -339,17 +340,20 @@
             this.panel6.Controls.Add(this.dgvHD);
             this.panel6.Location = new System.Drawing.Point(218, 409);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(672, 191);
+            this.panel6.Size = new System.Drawing.Size(522, 191);
             this.panel6.TabIndex = 6;
             // 
             // dgvHD
             // 
+            this.dgvHD.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dgvHD.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dgvHD.BackgroundColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.dgvHD.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvHD.Location = new System.Drawing.Point(34, 23);
             this.dgvHD.Name = "dgvHD";
-            this.dgvHD.Size = new System.Drawing.Size(600, 138);
+            this.dgvHD.Size = new System.Drawing.Size(449, 141);
             this.dgvHD.TabIndex = 0;
+            this.dgvHD.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvHD_RowHeaderMouseClick);
             // 
             // butXoaHD
             // 
@@ -361,6 +365,7 @@
             this.butXoaHD.TabIndex = 7;
             this.butXoaHD.Text = "Xóa Hóa Đơn";
             this.butXoaHD.UseVisualStyleBackColor = true;
+            this.butXoaHD.Click += new System.EventHandler(this.butXoaHD_Click);
             // 
             // label7
             // 
@@ -445,16 +450,6 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(252, 119);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(99, 36);
-            this.button1.TabIndex = 13;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // HoaDon
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -534,6 +529,5 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
     }
 }

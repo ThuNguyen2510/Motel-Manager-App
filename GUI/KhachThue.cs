@@ -80,8 +80,8 @@ namespace QLNT.GUI
 
         private void butSua_Click(object sender, EventArgs e)
         {
-            //if (MessageBox.Show("Bạn có chắc muốn sửa khách thuê này?", "Sửa", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-            //{
+            if (MessageBox.Show("Bạn có chắc muốn sửa khách thuê này?", "Sửa", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
                 object i = dgvKH.SelectedRows[0].Cells[0].Value;
                 string s = i.ToString();
                 KHACH_THUE kc = kt.lay1khach(s);
@@ -115,7 +115,7 @@ namespace QLNT.GUI
                 MessageBox.Show("Sửa Thành Công!","OK", MessageBoxButtons.OK);
                 dgvKH.DataSource = kt.show();
                 path1.Text = "label13";
-           // }
+            }
         }
         private bool checkempty(string x)
         {
@@ -186,19 +186,19 @@ namespace QLNT.GUI
 
             if (MessageBox.Show("Bạn có muốn xóa Khách thuê đã chọn?", "Xóa", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                //try
-                //{
+                try
+                {
                     for (int i = 0; i < TimXoa().Count; i++)
                     {
                         kt.Delete(this.TimXoa()[i]);
                     }
                     MessageBox.Show("Xóa thành công!","OK",MessageBoxButtons.OK);
                     dgvKH.DataSource = kt.show();
-               // }
-                //catch (Exception ex)
-                //{
-                //    MessageBox.Show("Thất bại, kiểm tra lại!","OK",MessageBoxButtons.OK);
-                //}
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Thất bại, kiểm tra lại!", "OK", MessageBoxButtons.OK);
+                }
             }
         }
 

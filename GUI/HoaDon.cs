@@ -24,6 +24,12 @@ namespace QLNT.GUI
             thang1= Convert.ToInt32(dt.Month.ToString()) + 1;
             thang.Text = thang1.ToString() + "/" + dt.Year.ToString();
             dgvTenDV.DataSource = hdbll.DV();
+            butSua.Enabled = false;
+            butThem.Enabled = false;
+            butXoaDV.Enabled = false;
+            butLapHD.Enabled = false;
+            butXoaHD.Enabled = false;
+
 
         }
                 private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -46,15 +52,12 @@ namespace QLNT.GUI
             txtMaDV.Enabled = false;
             txtTenDV.Enabled = false;
             txtDongia.Enabled = false;
-            List<string> pclhd = hdbll.PhongChuaLapHD(thang1);//hoadon
-            List<string> pclhd2 = hdbll.Pt();
-            List<string> differenceQuery = pclhd2.Except(pclhd).ToList();
-
-            for (int i = 0; i < differenceQuery.Count; i++)
+            List<string> pclhd = hdbll.PhongChuaLapHD();
+            for (int i = 0; i < pclhd.Count; i++)
             {
-                if (cbbPhongChuaTaoHD.FindStringExact(differenceQuery[i]) < 0) cbbPhongChuaTaoHD.Items.Add(differenceQuery[i]);
+                if (cbbPhongChuaTaoHD.FindStringExact(pclhd[i]) < 0) cbbPhongChuaTaoHD.Items.Add(pclhd[i]);
             }
-           
+            dgvPhongDaLapHD.DataSource = hdbll.PhongDaLapHD();
 
         }
 
@@ -67,6 +70,8 @@ namespace QLNT.GUI
             txtMaDV.Text = dv.MaDichVu;
             txtDongia.Text = Convert.ToInt32(dv.GiaDichVu) + "";
             lbDonVi.Text = dv.QuyCach;
+            butThem.Enabled = true;
+           
 
         }
 
@@ -81,13 +86,22 @@ namespace QLNT.GUI
                 };
 
                 string maphong = cbbPhongChuaTaoHD.SelectedItem.ToString();
-                hdbll.Them_1DV(cT_DICHVU);
-                cbbPhongChuaTaoHD_SelectedIndexChanged(this, e);
-                dgvDV.DataSource = hdbll.listDv1HD();
+                if (txtSoluong.Text == "")
+                    MessageBox.Show("Mời nhập số lượng!");
+                else
+                {
+                    hdbll.Them_1DV(cT_DICHVU);
+                    cbbPhongChuaTaoHD_SelectedIndexChanged(this, e);
+                    dgvDV.DataSource = hdbll.listDv1HD();
+                    cbbPhongChuaTaoHD.Enabled = false;
+                    butLapHD.Enabled = true;
+                    butThem.Enabled = false;
+                }
+               
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Mời Kiểm Tra Lại!")
+                MessageBox.Show("Mời Kiểm Tra Lại!");
             }
 
 
@@ -102,13 +116,16 @@ namespace QLNT.GUI
         {
             object i = dgvDV.SelectedRows[0].Cells[5].Value;
             string madv = i.ToString();
-            CT_DICHVU dv = hdbll.cT(cbbPhongChuaTaoHD.SelectedItem.ToString(),madv);
+            CT_DICHVU dv = hdbll.cT(madv);
             txtTenDV.Text = dv.DICH_VU.DichVu;
             int gia = Convert.ToInt32(dv.DICH_VU.GiaDichVu);
             txtDongia.Text = gia + "";
             txtMaDV.Text = dv.MaDichVu;
             lbDonVi.Text = dv.DICH_VU.QuyCach;
             txtSoluong.Text = dv.DonViSuDung.ToString();
+            butSua.Enabled = true;
+            butXoaDV.Enabled = true;
+            butThem.Enabled = false;
         }
 
         private void butLapHD_Click(object sender, EventArgs e)
@@ -122,8 +139,17 @@ namespace QLNT.GUI
                     NgayLap = DateTime.Now,
                 };
                 hdbll.ThemHD(hd);
+                dgvDV.DataSource = null;
+                HoaDon_Load(this, e);
+                cbbPhongChuaTaoHD.Items.Remove(hd.MaPhong);
+                cbbPhongChuaTaoHD.Enabled = true;
+                butSua.Enabled = false;
+                butThem.Enabled = false;
+                butXoaDV.Enabled = false;
+                butLapHD.Enabled = false;
+
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show("Kiểm tra lại!");
             }
@@ -135,9 +161,109 @@ namespace QLNT.GUI
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void dgvPhongDaLapHD_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            dgvPhongDaLapHD.DataSource = hdbll.PhongDaLapHD(thang1).ToList();
+            object i = dgvPhongDaLapHD.SelectedRows[0].Cells[0].Value;
+            string maphong = i.ToString();
+            dgvHD.DataSource = hdbll.ChiTietHDPhong(maphong);
+        }
+
+        private void butSua_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                object i = dgvDV.SelectedRows[0].Cells[5].Value;
+                string madv = i.ToString();
+
+                int dv = Convert.ToInt32(txtSoluong.Text);
+                if(txtSoluong.Text=="")
+                {
+                    MessageBox.Show("Mời nhập số lượng!");
+                }else
+                {
+
+                    hdbll.SuaDV(madv, dv);
+                    dgvDV.DataSource = hdbll.listDv1HD();
+                    butThem.Enabled = false;
+                }
+
+            }
+            catch (Exception p)
+            {
+                MessageBox.Show("Mời kiểm tra lại!");
+            }
+           
+        }
+
+        private void dgvHD_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            butXoaHD.Enabled = true;
+        }
+        public List<string> TimXoa()
+        {
+            List<string> msp = new List<string>();
+            foreach (DataGridViewRow i in dgvDV.SelectedRows)
+            {
+                msp.Add(i.Cells[5].Value.ToString());
+            }
+            return msp;
+        }
+            private void butXoaDV_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (MessageBox.Show("Bạn có muốn xóa Dich vu đã chọn?", "Xóa", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                   
+                    for (int i = 0; i < TimXoa().Count; i++)
+                    {
+                        hdbll.XoaDV(TimXoa()[i]);
+                      
+                    }
+                    MessageBox.Show("Xóa thành công!", "OK", MessageBoxButtons.OK);
+                    dgvDV.DataSource = hdbll.listDv1HD();
+                    butThem.Enabled = false;
+                }
+            }
+            catch (Exception p)
+            {
+                MessageBox.Show("Mời kiểm tra lại!");
+            }
+        }
+        public List<string> TimXoa2()
+        {
+            //MaDV
+            List<string> msp = new List<string>();
+            foreach (DataGridViewRow i in dgvHD.SelectedRows)
+            {
+                msp.Add(i.Cells[3].Value.ToString());
+            }
+            return msp;
+        }
+        private void butXoaHD_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (MessageBox.Show("Bạn có muốn xóa Dich vu đã chọn?", "Xóa", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    object k = dgvHD.SelectedRows[0].Cells[0].Value;
+                    int mahd = Convert.ToInt32(k);
+                    object f = dgvPhongDaLapHD.SelectedRows[0].Cells[0].Value;
+                    string maphong = f.ToString();
+                    for (int i = 0; i < TimXoa2().Count; i++)
+                    {
+                        hdbll.XoaHD(mahd,TimXoa2()[i]);
+
+                    }
+                    MessageBox.Show("Xóa thành công!", "OK", MessageBoxButtons.OK);
+                    dgvHD.DataSource = hdbll.ChiTietHDPhong(maphong);
+                    butXoaHD.Enabled= false;
+                }
+            }
+            catch (Exception p)
+            {
+                MessageBox.Show("Mời kiểm tra lại!");
+            }
         }
     }
 }

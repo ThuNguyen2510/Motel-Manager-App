@@ -132,6 +132,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="GUI\BangGiaPhong.resx">
+      <DependentUpon>BangGiaPhong.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUI\DangKyThue.resx">
       <DependentUpon>DangKyThue.cs</DependentUpon>
     </EmbeddedResource>

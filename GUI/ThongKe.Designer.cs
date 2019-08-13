@@ -1,6 +1,6 @@
 ﻿namespace QLNT.GUI
 {
-    partial class BangGiaPhong
+    partial class ThongKe
     {
         /// <summary>
         /// Required designer variable.
@@ -28,19 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.SuspendLayout();
-            // 
-            // BangGiaPhong
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.components = new System.ComponentModel.Container();
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = global::QLNT.Properties.Resources.istockphoto_692641848_612x612;
-            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Name = "BangGiaPhong";
-            this.Text = "Bảng Giá Phòng";
-            this.ResumeLayout(false);
-
+            this.Text = "ThongKe";
         }
 
         #endregion

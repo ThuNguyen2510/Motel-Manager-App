@@ -89,7 +89,8 @@ namespace QLNT
 
         private void hoadonToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            HoaDon hoaDon = new HoaDon();
+            hoaDon.Show();
         }
     }
 }

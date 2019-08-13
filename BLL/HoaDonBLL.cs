@@ -18,9 +18,9 @@ namespace QLNT.BLL
         {
             return hddal.ThoiGian();
         }
-        public List<string> PhongChuaLapHD(int t)
+        public List<string> PhongChuaLapHD()
         {
-            return hddal.PhongChuaLapHD(t);
+            return hddal.PhongChuaLapHD();
         }
         public List<Object> DV()
         {
@@ -38,18 +38,18 @@ namespace QLNT.BLL
         {
             return hddal.CTDV1H();
         }
-        public CT_DICHVU cT(string maphong,string madv)
+        public CT_DICHVU cT(string madv)
         {
-            return hddal.cT(maphong,madv);
+            return hddal.cT(madv);
         }
         public List<string> Pt()
         {
             return hddal.PhongChuaLapHDpt();
         }
 
-        public List<Object> PhongDaLapHD(int m)
+        public List<Object> PhongDaLapHD()
         {
-            return hddal.PhongDaLapHD(m);
+            return hddal.PhongDaLapHD();
         }
         public void ThemHD(HOA_DON hOA)
         {
@@ -59,6 +59,21 @@ namespace QLNT.BLL
         {
             return hddal.dem();
         }
-
+        public List<Object> ChiTietHDPhong(string maphong)
+        {
+            return hddal.ChiTietHDPhong(maphong);
+        }
+        public void SuaDV(string madv,int dvsd)
+        {
+            hddal.SuaDV(madv,dvsd);
+        }
+        public void XoaDV(string madv)
+        {
+            hddal.XoaDV(madv);
+        }
+        public void XoaHD(int mahd,string madv)
+        {
+            hddal.XoaHD(mahd, madv);
+        }
     }
 }
