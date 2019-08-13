@@ -75,5 +75,25 @@ namespace QLNT.BLL
         {
             hddal.XoaHD(mahd, madv);
         }
+        public List<Object> LayThang()
+        {
+            return hddal.LayThang();
+        }
+        public List<Object> LayHD(int thang)
+        {
+            return hddal.LayHD(thang);
+        }
+        public List<Object> TienPhong(string maphong)
+        {
+            return hddal.TienPhong(maphong);
+        }
+        public List<Object> TienDV(int mahd)
+        {
+            return hddal.TienDV(mahd);
+        }
+        public float DoanhThuThang(int thang, int nam)
+        {
+            return hddal.DoanhThuThang(thang, nam);
+        }
     }
 }

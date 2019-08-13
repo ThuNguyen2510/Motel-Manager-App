@@ -147,6 +147,7 @@
             this.thongkeToolStripMenuItem.Size = new System.Drawing.Size(100, 23);
             this.thongkeToolStripMenuItem.Text = "Thống Kê";
             this.thongkeToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.thongkeToolStripMenuItem.Click += new System.EventHandler(this.thongkeToolStripMenuItem_Click);
             // 
             // thongtinToolStripMenuItem
             // 

@@ -92,5 +92,11 @@ namespace QLNT
             HoaDon hoaDon = new HoaDon();
             hoaDon.Show();
         }
+
+        private void thongkeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ThongKe thongKe = new ThongKe();
+            thongKe.Show();
+        }
     }
 }
