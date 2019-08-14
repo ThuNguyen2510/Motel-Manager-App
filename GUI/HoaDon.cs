@@ -9,6 +9,12 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using QLNT.BLL;
 using QLNT.DTO;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
+using DevExpress.Utils.OAuth.Provider;
+using System.IO;
+using iTextSharp.text.pdf.parser;
+
 namespace QLNT.GUI
 {
     public partial class HoaDon : Form
@@ -29,7 +35,7 @@ namespace QLNT.GUI
             butXoaDV.Enabled = false;
             butLapHD.Enabled = false;
             butXoaHD.Enabled = false;
-
+            button1.Enabled = false;
 
         }
                 private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -71,7 +77,7 @@ namespace QLNT.GUI
             txtDongia.Text = Convert.ToInt32(dv.GiaDichVu) + "";
             lbDonVi.Text = dv.QuyCach;
             butThem.Enabled = true;
-           
+            button1.Enabled = false;
 
         }
 
@@ -166,6 +172,7 @@ namespace QLNT.GUI
             object i = dgvPhongDaLapHD.SelectedRows[0].Cells[0].Value;
             string maphong = i.ToString();
             dgvHD.DataSource = hdbll.ChiTietHDPhong(maphong);
+            button1.Enabled = true;
         }
 
         private void butSua_Click(object sender, EventArgs e)
@@ -223,6 +230,7 @@ namespace QLNT.GUI
                     MessageBox.Show("Xóa thành công!", "OK", MessageBoxButtons.OK);
                     dgvDV.DataSource = hdbll.listDv1HD();
                     butThem.Enabled = false;
+
                 }
             }
             catch (Exception p)
@@ -258,6 +266,7 @@ namespace QLNT.GUI
                     MessageBox.Show("Xóa thành công!", "OK", MessageBoxButtons.OK);
                     dgvHD.DataSource = hdbll.ChiTietHDPhong(maphong);
                     butXoaHD.Enabled= false;
+                    button1.Enabled = false;
                 }
             }
             catch (Exception p)
@@ -265,5 +274,39 @@ namespace QLNT.GUI
                 MessageBox.Show("Mời kiểm tra lại!");
             }
         }
+       
+        private void button1_Click(object sender, EventArgs e)//in hoa don
+        {
+            object i = dgvPhongDaLapHD.SelectedRows[0].Cells[0].Value;
+            string maphong = i.ToString();
+            List<string> madv = new List<string>();
+            string thang1 = thang.Text;
+            List<float> tien1dv = new List<float>();
+            float tongtien = 0;
+            for(int x=0;x<dgvHD.Rows.Count;x++)
+            {
+                string md = dgvHD.Rows[x].Cells[3].Value.ToString();
+                madv.Add(md);
+                float t = float.Parse(dgvHD.Rows[x].Cells[4].Value.ToString());
+                tien1dv.Add(t);
+                tongtien += tien1dv[x];
+            }
+            Document doc = new Document(PageSize.A4);      
+            string path = Environment.CurrentDirectory;           
+            string tenfile = "/" + maphong + ".pdf";
+            PdfWriter.GetInstance(doc, new FileStream(path + tenfile, FileMode.Create));         
+            doc.Open();
+            doc.Add(new Paragraph("HOA DON THANG "+thang1+"\t PHONG "+maphong));
+            doc.Add(new Paragraph("\n"));
+            for(int u=0;u<madv.Count;u++)
+            {
+                doc.Add(new Paragraph(madv[u] + "\t " + tien1dv[u] + ""));
+                doc.Add(new Paragraph("\n"));
+            }
+            doc.Add(new Paragraph("====================TONG TIEN =" + tongtien+"VND======================"));
+            doc.Close();
+            
+        
+    }
     }
 }
