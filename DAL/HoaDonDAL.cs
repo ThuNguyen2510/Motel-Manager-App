@@ -131,7 +131,7 @@ namespace QLNT.DAL
                 x.MaHoaDon,
                 x.HOA_DON.MaPhong,
                 NgayLap= x.HOA_DON.NgayLap.Value.Day+"/"+x.HOA_DON.NgayLap.Value.Month+"/"+ x.HOA_DON.NgayLap.Value.Year,
-                x.MaDichVu,
+                x.MaDichVu,x.DICH_VU.DichVu,x.DICH_VU.GiaDichVu,x.DonViSuDung,
                 TongTien=x.DonViSuDung*x.DICH_VU.GiaDichVu,
             }).ToList();
             List<Object> k = new List<object>(kq);

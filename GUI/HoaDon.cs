@@ -14,7 +14,7 @@ using iTextSharp.text.pdf;
 using DevExpress.Utils.OAuth.Provider;
 using System.IO;
 using iTextSharp.text.pdf.parser;
-
+using iTextSharp.text.pdf;
 namespace QLNT.GUI
 {
     public partial class HoaDon : Form
@@ -277,34 +277,70 @@ namespace QLNT.GUI
        
         private void button1_Click(object sender, EventArgs e)//in hoa don
         {
-            object i = dgvPhongDaLapHD.SelectedRows[0].Cells[0].Value;
-            string maphong = i.ToString();
-            List<string> madv = new List<string>();
-            string thang1 = thang.Text;
-            List<float> tien1dv = new List<float>();
-            float tongtien = 0;
-            for(int x=0;x<dgvHD.Rows.Count;x++)
+            try
             {
-                string md = dgvHD.Rows[x].Cells[3].Value.ToString();
-                madv.Add(md);
-                float t = float.Parse(dgvHD.Rows[x].Cells[4].Value.ToString());
-                tien1dv.Add(t);
-                tongtien += tien1dv[x];
+                object i = dgvPhongDaLapHD.SelectedRows[0].Cells[0].Value;
+                string maphong = i.ToString();
+                List<string> madv = new List<string>();
+                List<string> gia = new List<string>();
+                List<string> soluong = new List<string>();
+                string thang1 = thang.Text;
+                List<float> tien1dv = new List<float>();
+                float tongtien = 0;
+                for (int x = 0; x < dgvHD.Rows.Count; x++)
+                {
+                    string md = dgvHD.Rows[x].Cells[3].Value.ToString();
+                    madv.Add(md);
+                    int end = dgvHD.Rows[x].Cells[5].Value.ToString().Length - 5;
+                    string gia1 = dgvHD.Rows[x].Cells[5].Value.ToString().Substring(0,end);
+                    gia.Add(gia1);
+                    string sd1 = dgvHD.Rows[x].Cells[6].Value.ToString();
+                    soluong.Add(sd1);
+                    float t = float.Parse(dgvHD.Rows[x].Cells[7].Value.ToString());
+                    tien1dv.Add(t);
+                    tongtien += tien1dv[x];
+                }
+                Document doc = new Document(PageSize.A4);
+                string path = Environment.CurrentDirectory;
+                string tenfile = "/" + maphong + ".pdf";
+                PdfWriter.GetInstance(doc, new FileStream(path + tenfile, FileMode.Create));
+                doc.Open();
+                doc.Add(new Paragraph("HOA DON THANG " + thang1 + "\t PHONG " + maphong));
+                doc.Add(new Paragraph("  "));
+                PdfPTable pdfTable = new PdfPTable(4);
+                pdfTable.AddCell(new Phrase("TEN DICH VU"));
+                pdfTable.AddCell(new Phrase("SO LUONG"));
+                pdfTable.AddCell(new Phrase("DON GIA"));
+                pdfTable.AddCell(new Phrase("THANH TIEN"));
+                for (int u = 0; u < madv.Count; u++)
+                {
+                    pdfTable.AddCell(new Phrase(madv[u]));
+                    pdfTable.AddCell(new Phrase(soluong[u]));
+                    pdfTable.AddCell(new Phrase(gia[u]));
+                    pdfTable.AddCell(new Phrase(tien1dv[u].ToString()));
+                }
+                pdfTable.AddCell(new Phrase(" "));
+                pdfTable.AddCell(new Phrase(" "));
+                pdfTable.AddCell(new Phrase("TONG TIEN"));
+                pdfTable.AddCell(new Phrase(tongtien.ToString()));
+                //doc.Add(new Paragraph("\n"));
+                //doc.Add(new Paragraph("Ten dich vu       "+"So luong   "+"Don gia        "+"Thanh tien"));
+                //doc.Add(new Paragraph("\n"));
+                //for (int u = 0; u < madv.Count; u++)
+                //{
+                //    doc.Add(new Paragraph(madv[u] + ":             " +soluong[u]+"             "+ gia[u]+"          "+tien1dv[u] + ""));
+                //    doc.Add(new Paragraph("\n"));
+                //}
+                //doc.Add(new Paragraph("====================TONG TIEN =" + tongtien + "VND======================"));
+                doc.Add(pdfTable);
+                doc.Close();
+                MessageBox.Show("In Hóa Đơn Thành Công!!");
             }
-            Document doc = new Document(PageSize.A4);      
-            string path = Environment.CurrentDirectory;           
-            string tenfile = "/" + maphong + ".pdf";
-            PdfWriter.GetInstance(doc, new FileStream(path + tenfile, FileMode.Create));         
-            doc.Open();
-            doc.Add(new Paragraph("HOA DON THANG "+thang1+"\t PHONG "+maphong));
-            doc.Add(new Paragraph("\n"));
-            for(int u=0;u<madv.Count;u++)
+            catch(Exception p)
             {
-                doc.Add(new Paragraph(madv[u] + "\t " + tien1dv[u] + ""));
-                doc.Add(new Paragraph("\n"));
+
             }
-            doc.Add(new Paragraph("====================TONG TIEN =" + tongtien+"VND======================"));
-            doc.Close();
+            
             
         
     }
