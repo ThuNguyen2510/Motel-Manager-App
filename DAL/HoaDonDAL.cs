@@ -191,39 +191,40 @@ namespace QLNT.DAL
             List<Object> e = new List<object>(kq);
             return e;
         }
-        //public List<string> LayMaPhongTheoThang(int thang,int nam)
-        //{
-        //    List<string> hOA_ = ql.HOA_DON.Where(x => x.NgayLap.Value.Month == thang && x.NgayLap.Value.Year == nam).Select(e => e.MaPhong).ToList();
-        //    return hOA_;
-        //}
-        public float DoanhThuThang(int thang, int nam)
+        public List<int> layMAHD(int thang,int nam)
         {
-            float tong = 0;
             List<int> hOA_ = ql.HOA_DON.Where(x => x.NgayLap.Value.Month == thang && x.NgayLap.Value.Year == nam).Select(e => e.MaHoaDon).ToList();
-            for (int i=0;i<hOA_.Count;i++)
-            {
-                object tien1p = ql.CT_DICHVU.Where(q => q.MaHoaDon == hOA_[i]).Select(x=>
-                
-                     x.DonViSuDung * x.DICH_VU.GiaDichVu
-                );
-                tong += float.Parse(tien1p.ToString());
-            }
-            List<string> h = ql.HOA_DON.Where(x => x.NgayLap.Value.Month == thang && x.NgayLap.Value.Year == nam).Select(x => x.MaPhong).ToList();// maphong
-            
-            List<int> songuoi = new List<int>();
-            for(int i=0;i<h.Count;i++)
-            {
-                object a = ql.PHONG_TRO.Where(x => x.MaPhong == h[i]).Select(q => q.SoNguoi).SingleOrDefault();
-                int sn = Convert.ToInt32(a);
-                songuoi.Add(sn);
-            }
-            for (int i=0;i<songuoi.Count;i++)
-            {
-                object tienphong = ql.GIA_THUE.Where(x => x.SoNguoi == songuoi[i]).Select(z => z.GiaTien);
-                tong += float.Parse(tienphong.ToString());
-            }
-            return tong;
+           
+            return hOA_;
+        }
+        public List<Object> DoanhThuThangDV(int mahoadon)
+        {
 
+            var tien1p = ql.CT_DICHVU.Where(q => q.MaHoaDon == mahoadon).Select(x => new
+            {
+                Tien = x.DonViSuDung * x.DICH_VU.GiaDichVu
+            }
+            ).ToList();
+            List<Object> tiendv = new List<object>(tien1p);
+            return tiendv;
+
+        }
+        public List<Object> LayMP(int thang, int nam)
+        { 
+            var kq= ql.HOA_DON.Where(x => x.NgayLap.Value.Month == thang && x.NgayLap.Value.Year == nam).Select(x =>new { x.MaPhong }).ToList();// maphong
+            List<Object> h = new List<object>(kq);
+            return h;
+        }
+        public object Songuoi(string maphong)
+        {
+         
+            var a = ql.PHONG_TRO.Where(x => x.MaPhong == maphong).Select(q => new { q.SoNguoi }).SingleOrDefault();
+            return a;
+        }
+        public object DoanhThuThangPhong(int songuoi)
+        {
+            var tienphong1 = ql.GIA_THUE.Where(x => x.SoNguoi ==songuoi).Select(z =>new { z.GiaTien }).SingleOrDefault();
+            return tienphong1;
         }
 
     }

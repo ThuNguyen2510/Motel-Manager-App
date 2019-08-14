@@ -7,10 +7,10 @@ using QLNT.DTO;
 using QLNT.DAL;
 namespace QLNT.BLL
 {
- public  class HoaDonBLL
+    public class HoaDonBLL
     {
-       public HoaDonDAL hddal { get; set; }
-       public HoaDonBLL()
+        public HoaDonDAL hddal { get; set; }
+        public HoaDonBLL()
         {
             this.hddal = new HoaDonDAL();
         }
@@ -63,15 +63,15 @@ namespace QLNT.BLL
         {
             return hddal.ChiTietHDPhong(maphong);
         }
-        public void SuaDV(string madv,int dvsd)
+        public void SuaDV(string madv, int dvsd)
         {
-            hddal.SuaDV(madv,dvsd);
+            hddal.SuaDV(madv, dvsd);
         }
         public void XoaDV(string madv)
         {
             hddal.XoaDV(madv);
         }
-        public void XoaHD(int mahd,string madv)
+        public void XoaHD(int mahd, string madv)
         {
             hddal.XoaHD(mahd, madv);
         }
@@ -91,9 +91,25 @@ namespace QLNT.BLL
         {
             return hddal.TienDV(mahd);
         }
-        public float DoanhThuThang(int thang, int nam)
+        public List<Object> DoanhThuThangDV(int mahd)
         {
-            return hddal.DoanhThuThang(thang, nam);
+            return hddal.DoanhThuThangDV(mahd);
+        }
+        public List<Object> LayMAPHONG(int thang, int nam)
+        {
+            return hddal.LayMP(thang, nam);
+        }
+        public object Songuoi(string maphong)
+        {
+            return hddal.Songuoi(maphong);
+        }
+       public object DoanhThuThangPhong(int songuoi)
+        {
+            return hddal.DoanhThuThangPhong(songuoi);
+        }
+        public List<int> layMAHD(int thang, int nam)
+        {
+            return hddal.layMAHD(thang, nam);
         }
     }
 }
