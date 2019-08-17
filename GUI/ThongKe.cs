@@ -34,6 +34,7 @@ namespace QLNT.GUI
         private void ThongKe_Load(object sender, EventArgs e)
         {
             LayThang();
+          
         }
         DataTable table = new DataTable("T");
    
@@ -66,8 +67,8 @@ namespace QLNT.GUI
             {
                 tong += DoanhThuThang(thang[i], nam[i]);
             }
-            txtTongDT.Text = tong + "";
-
+           
+            txtTongDT.Text = String.Format("{0:N}", tong);
         }
 
         private void dgvThang_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -78,7 +79,7 @@ namespace QLNT.GUI
             string ten = i.ToString().Substring(0, 4);
             int nam = Convert.ToInt32(ten);
             dgvPhong.DataSource = hoaDonBLL.LayHD(thang);
-            txtTienThang.Text = DoanhThuThang(thang, nam)+ "";
+            txtTienThang.Text = String.Format("{0:N}", DoanhThuThang(thang, nam));
         }
         public float DoanhThuThang(int thang,int nam)
         {
@@ -89,7 +90,7 @@ namespace QLNT.GUI
                 MapHong.Add(k);
             }
 
-            List<int> x = hoaDonBLL.layMAHD(thang, nam);
+            List<int> x = hoaDonBLL.layMAHD(thang, nam);// lay ma hoa don tu bang hoa don
             List<Object> tiendv = new List<object>();
             for (int p = 0; p < x.Count; p++)
             {
@@ -119,10 +120,7 @@ namespace QLNT.GUI
             for (int u = 0; u < sn.Count; u++)
             {
 
-                if (!tienphong.Contains(hoaDonBLL.DoanhThuThangPhong(sn[u])))
-                {
                     tienphong.Add(hoaDonBLL.DoanhThuThangPhong(sn[u]));
-                }
             }
             for (int u = 0; u < tienphong.Count; u++)
             {
@@ -130,6 +128,7 @@ namespace QLNT.GUI
                 string t = tienphong[u].ToString().Substring(12, end);
                 tong2 += float.Parse(t);
             }
+           
             return  tong1 + tong2;
            
 
@@ -149,7 +148,7 @@ namespace QLNT.GUI
             for (int o = 0; o < sc ; o++)
                 tien += float.Parse(dgvTienDV.Rows[o].Cells[2].Value.ToString());
             tien +=float.Parse(dgvTienPhong.Rows[0].Cells[1].Value.ToString());
-            txtTienPhong.Text = tien + "";
+            txtTienPhong.Text = String.Format("{0:N}", tien);
         }
        
         private void dgvPhong_CellContentClick(object sender, DataGridViewCellEventArgs e)

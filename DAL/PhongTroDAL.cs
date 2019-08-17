@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using QLNT.DTO;
+using System.Windows.Forms;
 namespace QLNT.DAL
 {
 public  class PhongTroDAL
@@ -109,6 +110,36 @@ public  class PhongTroDAL
             KHACH_THUE k = ql.KHACH_THUE.Where(x => x.MaKhach == ct.MaKhach).SingleOrDefault();
             k.TinhTrang = 1;
             ql.SaveChanges();
+        }
+        public List<Object> gIA_sphong()
+        {
+            var q= ql.GIA_THUE.Where(y=>y.SoNguoi!=0).Select(x=> new { x.SoNguoi, x.GiaTien}).ToList();
+            List<Object> ts = new List<object>(q);
+            return ts;
+        }
+        public GIA_THUE giA_THUE(int sonnguoi)
+        {
+            return ql.GIA_THUE.Where(x => x.SoNguoi == sonnguoi).SingleOrDefault();
+
+        }
+        public void ThemPhong(GIA_THUE gIA_)
+        {
+            int so = ql.GIA_THUE.Where(x => x.SoNguoi == gIA_.SoNguoi).Select(e => e.SoNguoi).SingleOrDefault();
+            if(so!=gIA_.SoNguoi)
+            {
+                ql.GIA_THUE.Add(gIA_);
+                ql.SaveChanges();
+            }
+             
+           else MessageBox.Show("Mời kiểm tra lại thông tin!");           
+
+}
+        public void SuaPhong(GIA_THUE gIA_)
+        {
+            GIA_THUE a = ql.GIA_THUE.Where(x => x.SoNguoi == gIA_.SoNguoi).SingleOrDefault();
+            a.GiaTien = gIA_.GiaTien;
+            ql.SaveChanges();
+
         }
     }
 }

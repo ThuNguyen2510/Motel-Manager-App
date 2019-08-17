@@ -50,7 +50,7 @@ namespace QLNT.DAL
         {
             return ql.DICH_VU.Where(x =>x.DichVu == tendv).SingleOrDefault();
         }
-        //CT_DICHVU ct;
+        
         int ma;
         public void ThemDV(CT_DICHVU dv)
         {
@@ -61,7 +61,6 @@ namespace QLNT.DAL
             dv.MaHoaDon = mahd + 1 ;
             ma = (int)s + 1;
             ql.CT_DICHVU.Add(dv);
-            ////    ct = dv;
             ql.SaveChanges();
         }
         public void SuaDV(string madv,int dvsd)

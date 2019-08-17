@@ -50,5 +50,22 @@ namespace QLNT.BLL
         {
             ptdal.AddKhachGhep(ct);
         }
+        public List<Object> listGiaThueP()
+        {
+            return ptdal.gIA_sphong();
+        }
+        public GIA_THUE gIA_THUE(int songuoi)
+        {
+            return ptdal.giA_THUE(songuoi);
+        }
+        public void Addgiaphong(GIA_THUE a)
+        {
+            ptdal.ThemPhong(a);
+        }
+        public void SuaPhong(GIA_THUE a)
+        {
+            ptdal.SuaPhong(a);
+        }
      }
+
 }

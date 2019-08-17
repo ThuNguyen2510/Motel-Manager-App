@@ -143,6 +143,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="GUI\BangGiaDV.resx">
+      <DependentUpon>BangGiaDV.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUI\BangGiaPhong.resx">
       <DependentUpon>BangGiaPhong.cs</DependentUpon>
     </EmbeddedResource>

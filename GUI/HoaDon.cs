@@ -323,15 +323,6 @@ namespace QLNT.GUI
                 pdfTable.AddCell(new Phrase(" "));
                 pdfTable.AddCell(new Phrase("TONG TIEN"));
                 pdfTable.AddCell(new Phrase(tongtien.ToString()));
-                //doc.Add(new Paragraph("\n"));
-                //doc.Add(new Paragraph("Ten dich vu       "+"So luong   "+"Don gia        "+"Thanh tien"));
-                //doc.Add(new Paragraph("\n"));
-                //for (int u = 0; u < madv.Count; u++)
-                //{
-                //    doc.Add(new Paragraph(madv[u] + ":             " +soluong[u]+"             "+ gia[u]+"          "+tien1dv[u] + ""));
-                //    doc.Add(new Paragraph("\n"));
-                //}
-                //doc.Add(new Paragraph("====================TONG TIEN =" + tongtien + "VND======================"));
                 doc.Add(pdfTable);
                 doc.Close();
                 MessageBox.Show("In Hóa Đơn Thành Công!!");

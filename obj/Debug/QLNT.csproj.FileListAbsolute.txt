@@ -65,3 +65,4 @@ C:\Users\Admin\source\repos\QLNT\QLNT\obj\Debug\QLNT.GUI.BangGiaPhong.resources
 C:\Users\Admin\source\repos\QLNT\QLNT\obj\Debug\QLNT.GUI.ThongKe.resources
 C:\Users\Admin\source\repos\QLNT\QLNT\bin\Debug\itextsharp.dll
 C:\Users\Admin\source\repos\QLNT\QLNT\bin\Debug\itextsharp.xml
+C:\Users\Admin\source\repos\QLNT\QLNT\obj\Debug\QLNT.GUI.BangGiaDV.resources

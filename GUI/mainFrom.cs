@@ -98,5 +98,12 @@ namespace QLNT
             ThongKe thongKe = new ThongKe();
             thongKe.Show();
         }
+
+        private void giáDịchVụToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            BangGiaDV bangGiaDV = new BangGiaDV();
+            bangGiaDV.Show();
+
+        }
     }
 }

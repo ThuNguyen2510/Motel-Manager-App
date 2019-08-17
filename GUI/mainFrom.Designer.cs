@@ -128,7 +128,7 @@
             // 
             this.giáPhòngToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.giáPhòngToolStripMenuItem.Name = "giáPhòngToolStripMenuItem";
-            this.giáPhòngToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
+            this.giáPhòngToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.giáPhòngToolStripMenuItem.Text = "Giá Phòng";
             this.giáPhòngToolStripMenuItem.Click += new System.EventHandler(this.giáPhòngToolStripMenuItem_Click);
             // 
@@ -136,8 +136,9 @@
             // 
             this.giáDịchVụToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.giáDịchVụToolStripMenuItem.Name = "giáDịchVụToolStripMenuItem";
-            this.giáDịchVụToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
+            this.giáDịchVụToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.giáDịchVụToolStripMenuItem.Text = "Giá Dịch Vụ";
+            this.giáDịchVụToolStripMenuItem.Click += new System.EventHandler(this.giáDịchVụToolStripMenuItem_Click);
             // 
             // thongkeToolStripMenuItem
             // 
