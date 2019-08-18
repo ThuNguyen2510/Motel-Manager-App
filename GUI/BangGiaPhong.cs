@@ -28,11 +28,13 @@ namespace QLNT.GUI
 
         private void BangGiaPhong_Load(object sender, EventArgs e)
         {
-            dataGridView1.DataSource = ptbll.listGiaThueP();
-           
+            dataGridView1.DataSource = ptbll.listGiaThueP();           
             butSua.Enabled = false;
         }
-
+        public void show()
+        {
+            dataGridView1.DataSource = ptbll.listGiaThueP();
+        }
         private void dataGridView1_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             object u = dataGridView1.SelectedRows[0].Cells[0].Value;
@@ -40,30 +42,16 @@ namespace QLNT.GUI
             GIA_THUE gIA_ = ptbll.gIA_THUE(sn);
             txtSoNguoi.Text = gIA_.SoNguoi.ToString();
             var info = System.Globalization.CultureInfo.GetCultureInfo("vi-VN");
-            txtGiaTien.Text = string.Format(info,"{0:N}",gIA_.GiaTien);           
+            txtGiaTien.Text = string.Format("{0:N}",gIA_.GiaTien);           
             butSua.Enabled = true;
         }
 
         private void butThem_Click(object sender, EventArgs e)
         {
-            try
-            {
-                GIA_THUE gIA_ = new GIA_THUE
-                {
-                    SoNguoi = Convert.ToInt32(txtSoNguoi.Text),
-                     GiaTien = Convert.ToDecimal(txtGiaTien.Text)
-                   
-            };
-                
-                ptbll.Addgiaphong(gIA_);
-                MessageBox.Show("Thêm Thành Công!");
-                BangGiaPhong_Load(this, e);
+            ThemPhong themPhong = new ThemPhong();
+            themPhong.t = new ThemPhong.THEM(show);
+            themPhong.Show();
         }
-            catch (Exception r)
-            {
-                MessageBox.Show("Mời kiểm tra lại thông tin!");
-            }
-}
 
         private void butSua_Click(object sender, EventArgs e)
         {
@@ -71,18 +59,20 @@ namespace QLNT.GUI
             int sn = Convert.ToInt32(u.ToString());
             try
             {
-
-                GIA_THUE gIA_ = new GIA_THUE
+                if (MessageBox.Show("Bạn có chắc muốn sửa phòng này?", "Sửa", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    SoNguoi = Convert.ToInt32(txtSoNguoi.Text),
-                    GiaTien = Convert.ToDecimal(txtGiaTien.Text)
-                };
-                ptbll.SuaPhong(gIA_);
-                MessageBox.Show("Sửa thành công!");
+                    GIA_THUE gIA_ = new GIA_THUE
+                    {
+                        SoNguoi = Convert.ToInt32(txtSoNguoi.Text),
+                        GiaTien = Convert.ToDecimal(txtGiaTien.Text)
+                    };
+                    ptbll.SuaPhong(gIA_);
+                    MessageBox.Show("Sửa thành công!","OK",MessageBoxButtons.OK);
+                }
             }
             catch(Exception es)
                 {
-                MessageBox.Show("Mời kiểm tra lại thông tin!");
+                MessageBox.Show("Mời kiểm tra lại thông tin!", "OK", MessageBoxButtons.OK);
 
             }
 

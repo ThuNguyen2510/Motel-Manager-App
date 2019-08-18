@@ -46,6 +46,7 @@ namespace QLNT.DAL
             {
                 ql.KHACH_THUE.Add(ks);
                 ks.TinhTrang = 0;
+              
                 ql.SaveChanges();
                 MessageBox.Show("Thêm Khách Thuê Thành Công!");
             }
@@ -58,12 +59,12 @@ namespace QLNT.DAL
         public void Delete(string s)
         {
             KHACH_THUE k = this.lay1khach(s);
-            USER_KHACHTHUE u = ql.USER_KHACHTHUE.Where(x => x.MaKhach == k.MaKhach).SingleOrDefault();
+            //USER_KHACHTHUE u = ql.USER_KHACHTHUE.Where(x => x.MaKhach == k.MaKhach).SingleOrDefault();
             CT_KHACH_THUE ct = ql.CT_KHACH_THUE.Where(x => x.MaKhach == k.MaKhach).SingleOrDefault();
             ct.PHONG_TRO.SoNguoi--;            
             ql.KHACH_THUE.Remove(k);
             ql.CT_KHACH_THUE.Remove(ct);
-            ql.USER_KHACHTHUE.Remove(u);
+          //  ql.USER_KHACHTHUE.Remove(u);
             ql.SaveChanges();
 
         }

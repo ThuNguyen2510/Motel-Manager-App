@@ -29,7 +29,7 @@ namespace QLNT
             {
                 this.thongkeToolStripMenuItem.Enabled = true;
                 this.khachthueToolStripMenuItem.Enabled = true;
-                this.thongtinToolStripMenuItem.Enabled = true;
+             
                 this.phongtroToolStripMenuItem.Enabled = true;
                 this.bangiaToolStripMenuItem.Enabled = true;
                 this.hoadonToolStripMenuItem.Enabled = true;
@@ -41,7 +41,7 @@ namespace QLNT
         {
             this.thongkeToolStripMenuItem.Enabled = false;
             this.khachthueToolStripMenuItem.Enabled = false;
-            this.thongtinToolStripMenuItem.Enabled = false;
+            
             this.phongtroToolStripMenuItem.Enabled = false;
             this.bangiaToolStripMenuItem.Enabled = false;
             this.hoadonToolStripMenuItem.Enabled = false;
@@ -104,6 +104,12 @@ namespace QLNT
             BangGiaDV bangGiaDV = new BangGiaDV();
             bangGiaDV.Show();
 
+        }
+
+      
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

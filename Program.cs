@@ -20,7 +20,7 @@ namespace QLNT
             //SkinManager.EnableFormSkins();
             //UserLookAndFeel.Default.SetSkinStyle("DevExpress Style");
             
-                Application.Run(new BangGiaDV());
+                Application.Run(new Form1());
            
             
             
